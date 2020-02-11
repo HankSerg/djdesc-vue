@@ -1,10 +1,8 @@
 <template>
   <form id="login" @submit.prevent="submit">
-    <input type="text" name="username" value="" placeholder="username"
-    v-model="username">
-    <input type="password" name="password" value="" placeholder="password"
-    v-modle="password">
-    <input type="submit" name="" value="Авторизация">
+    <input type="text" name="username" placeholder="username" v-model="username">
+    <input type="password" name="password" placeholder="password" v-model="password">
+    <input type="submit" value="Залогиниться" />
   </form>
 </template>
 
@@ -19,10 +17,13 @@ export default {
     };
   },
   methods: {
-    submit() {
-      return this.LOGIN(this);
+    async submit() {
+      await this.LOGIN(this);
+      this.$router.push('/');
     },
-    ...mapActions('auth', ['LOGIN']),
+    ...mapActions('auth', [
+      'LOGIN',
+    ]),
   },
 };
 </script>
